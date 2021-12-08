@@ -1,0 +1,19 @@
+.content_img {
+    width: 800px;
+    height: 150px;
+}
+.profile {
+    display: flex;
+    gap: 20px;
+}
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile_img {
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+}
