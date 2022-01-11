@@ -1,23 +1,64 @@
 
 let ADD_MESSAGE = 'ADD_MESSAGE'
 let UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
-const dilogsReducer = (state, action) => {
+
+let initialState = {
+    dialogData: [
+        {
+            name: 'giorgi',
+            path: 1
+        },
+        {
+            name: 'temo',
+            path: 2
+        },
+        {
+            name: 'ale',
+            path: 3
+        },
+        {
+            name: 'vaxo',
+            path: 4
+        }
+
+    ],
+    messageData: [
+        {
+            message: 'hey'
+        },
+        {
+            message: 'Say my name'
+        },
+        {
+            message: 'heizenber'
+        }
+
+    ],
+    messageText: ''
+}
+
+const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_MESSAGE:
+        case ADD_MESSAGE: {
             let newMessage = {
                 message: state.messageText
             }
-            state.messageText = ''
-            state.messageData.push(newMessage)
+            return {
+                ...state,
+                messageData: [...state.messageData, newMessage],
+                messageText: ''
+            }
+        }
+        case UPDATE_MESSAGE_TEXT: {
+            return {
+                ...state,
+                messageText: action.text
+            }
+        }
+        default: {
             return state;
-        case UPDATE_MESSAGE_TEXT:
-            state.messageText = action.text
-            return state;
-
-        default:
-            return state;
-
+        }
     }
 }
 
@@ -31,4 +72,4 @@ export const updateMessageTextActionCreator = (value) => ({
     text: value
 })
 
-export default dilogsReducer;
+export default dialogsReducer;

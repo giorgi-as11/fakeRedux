@@ -8,15 +8,12 @@ import { addPostActionCreator, updatePostValueActionCreator } from '../../../red
 
 const MyPost = (props) => {
 
-    let inputRef = React.createRef()
-
     let handleNewPost = () => {
-        props.dispatch(addPostActionCreator())
+        props.addPost()
     }
 
-    let handleInputChange = () => {
-        let text = inputRef.current.value
-        props.dispatch(updatePostValueActionCreator(text))
+    let handleInputChange = (e) => {
+        props.changePostValue(e.target.value)
     }
 
     let postItems = props.postData.map((element) => {
@@ -25,8 +22,14 @@ const MyPost = (props) => {
     return (
         <div className={s.myPost}>
             <h2>My post</h2>
-            <input className={s.myPost_input} onChange={handleInputChange} value={props.postValue} placeholder='Your post place' ref={inputRef} type='text' />
-            <input className={s.myPost_button} onClick={handleNewPost} type='submit' />
+            <input
+                className={s.myPost_input}
+                onChange={handleInputChange}
+                value={props.value}
+                type='text' />
+            <input className={s.myPost_button}
+                onClick={handleNewPost}
+                type='submit' />
             {postItems}
         </div>
     )
